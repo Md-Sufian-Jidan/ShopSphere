@@ -46,25 +46,4 @@ router.post("/login", async (req, res) => {
     }
 });
 
-router.post("/google", async (req, res) => {
-    try {
-        const { name, email, photoURL } = req.body;
-
-        let user = await User.findOne({ email });
-
-        if (!user) {
-            user = new User({ name, email, image: photoURL, password: null });
-            await user.save();
-        }
-
-        const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
-            expiresIn: "1d",
-        });
-
-        res.json({ token, user: { id: user._id, name: user.name, email: user.email } });
-    } catch (error) {
-        res.status(500).json({ msg: "Server error" });
-    }
-});
-
 export default router;
