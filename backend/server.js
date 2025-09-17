@@ -17,9 +17,9 @@ app.use(cors());
 
 app.use("/api/auth", authRoutes);
 
-app.get("/", (req, res) => {
-    res.send("API is running...");
-});
+// app.get("/", (req, res) => {
+//     res.send("API is running...");
+// });
 
 // Server start
 const PORT = process.env.PORT || 5000;

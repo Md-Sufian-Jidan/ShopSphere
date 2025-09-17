@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Bell, Menu, Search, User } from "lucide-react";
-import { Outlet } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
 
 const Dashboard = () => {
     const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -12,12 +12,14 @@ const Dashboard = () => {
             { name: "Orders", href: "/dashboard/admin-orders" },
             { name: "Products", href: "/dashboard/admin-products" },
             { name: "Customers", href: "/dashboard/admin-customers" },
-            { name: "Settings", href: "#" },
+            { name: "Settings", href: "/dashboard/admin-settings" },
+            { name: "Cart", href: "/dashboard/cart" },
         ]
         : [
             { name: "Dashboard", href: "/dashboard/customer-dashboard" },
             { name: "My Orders", href: "/dashboard/customer-order" },
             { name: "Profile", href: "/dashboard/profile" },
+            { name: "Cart", href: "/dashboard/cart" },
         ];
 
     return (
@@ -28,7 +30,7 @@ const Dashboard = () => {
                     }`}
             >
                 <div className="flex items-center justify-between px-6 py-4 border-b">
-                    <h1 className="text-xl font-bold text-primary">ShopSphere</h1>
+                    <Link to={'/'} className="text-xl font-bold text-primary">ShopSphere</Link>
                     <button
                         onClick={() => setSidebarOpen(false)}
                         className="lg:hidden text-gray-500 hover:text-primary"

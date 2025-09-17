@@ -11,6 +11,8 @@ import CustomerOrder from "../Pages/Dashboard/CustomerOrder/CustomerOrder";
 import AdminDashboard from "../Pages/Dashboard/AdminDashboard/AdminDashboard";
 import AdminProducts from "../Pages/Dashboard/AdminProducts/AdminProducts";
 import AdminCustomers from "../Pages/Dashboard/AdminCustomers/AdminCustomers";
+import AdminSettings from "../Pages/Dashboard/AdminSettings/AdminSettings";
+import Cart from "../Pages/Dashboard/Cart/Cart";
 
 const router = createBrowserRouter([
     {
@@ -40,6 +42,10 @@ const router = createBrowserRouter([
         element: <Dashboard />,
         children: [
             {
+                path: '/dashboard/cart',
+                element: <Cart />
+            },
+            {
                 path: '/dashboard/profile',
                 element: <UserProfile />
             },
@@ -66,6 +72,10 @@ const router = createBrowserRouter([
             {
                 path: '/dashboard/admin-customers',
                 element: <AdminCustomers />
+            },
+            {
+                path: '/dashboard/admin-settings',
+                element: <AdminSettings />
             },
         ]
     },
