@@ -4,19 +4,19 @@ import { Outlet } from "react-router-dom";
 
 const Dashboard = () => {
     const [sidebarOpen, setSidebarOpen] = useState(false);
-    const role = '';
+    const role = 'admin';
     // Define navigation links based on role
     const navLinks = role === "admin"
         ? [
-            { name: "Dashboard", href: "/dashboard" },
-            { name: "Orders", href: "#" },
-            { name: "Products", href: "#" },
-            { name: "Customers", href: "#" },
+            { name: "Dashboard", href: "/dashboard/admin" },
+            { name: "Orders", href: "/dashboard/admin-orders" },
+            { name: "Products", href: "/dashboard/admin-products" },
+            { name: "Customers", href: "/dashboard/admin-customers" },
             { name: "Settings", href: "#" },
         ]
         : [
-            { name: "Dashboard", href: "/dashboard" },
-            { name: "My Orders", href: "#" },
+            { name: "Dashboard", href: "/dashboard/customer-dashboard" },
+            { name: "My Orders", href: "/dashboard/customer-order" },
             { name: "Profile", href: "/dashboard/profile" },
         ];
 

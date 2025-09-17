@@ -144,7 +144,7 @@ const Navbar = () => {
                                         <Menu.Item>
                                             {({ active }) => (
                                                 <Link
-                                                    to="/profile"
+                                                    to="/dashboard/profile"
                                                     className={`flex items-center space-x-3 px-4 py-3 text-sm font-medium transition-all duration-200 ${active
                                                         ? "bg-gradient-to-r from-primary to-purple-600 text-white"
                                                         : "text-dark hover:bg-gray-50"
