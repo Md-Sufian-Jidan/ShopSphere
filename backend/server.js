@@ -20,7 +20,6 @@ app.get("/", (req, res) => {
 });
 app.use("/api/auth", authRoutes);
 
-
 // Server start
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
