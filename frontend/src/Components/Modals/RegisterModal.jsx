@@ -7,6 +7,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect } from "react";
 import Swal from "sweetalert2";
 import { FaEye, FaEyeSlash, FaUser, FaEnvelope, FaLock, FaTimes, FaCheck, FaUpload, FaSpinner } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 
 const VITE_IMAGE_HOSTING_KEY = import.meta.env.VITE_IMAGE_HOSTING_KEY;
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${VITE_IMAGE_HOSTING_KEY}`;
@@ -14,6 +15,7 @@ const image_hosting_api = `https://api.imgbb.com/1/upload?key=${VITE_IMAGE_HOSTI
 const RegisterModal = ({ isOpen, onClose, onSwitchToLogin }) => {
     const { createUser, updateUserProfile } = useAuth();
     const axiosPublic = useAxiosPublic();
+    const navigate = useNavigate();
 
     const [imagePreview, setImagePreview] = useState(null);
     const [strength, setStrength] = useState("");
@@ -115,6 +117,7 @@ const RegisterModal = ({ isOpen, onClose, onSwitchToLogin }) => {
                                     });
                                     resetForm();
                                     setImagePreview(null);
+                                    navigate('/dashboard/profile')
                                     onClose();
                                     setSubmitting(false);
                                 })
@@ -292,10 +295,10 @@ const RegisterModal = ({ isOpen, onClose, onSwitchToLogin }) => {
                                         </label>
                                         <div
                                             className={`flex items-center border-2 rounded-xl transition-all duration-200 ${errors.password && touched.password
-                                                    ? "border-red-300 bg-red-50"
-                                                    : focusedField === "password"
-                                                        ? "border-blue-500 bg-blue-50 shadow-lg shadow-blue-100"
-                                                        : "border-gray-200 hover:border-gray-300"
+                                                ? "border-red-300 bg-red-50"
+                                                : focusedField === "password"
+                                                    ? "border-blue-500 bg-blue-50 shadow-lg shadow-blue-100"
+                                                    : "border-gray-200 hover:border-gray-300"
                                                 }`}
                                         >
                                             <FaLock
@@ -343,10 +346,10 @@ const RegisterModal = ({ isOpen, onClose, onSwitchToLogin }) => {
                                                     </div>
                                                     <span
                                                         className={`text-xs font-medium ${strengthScore >= 4
-                                                                ? "text-green-600"
-                                                                : strengthScore >= 3
-                                                                    ? "text-yellow-600"
-                                                                    : "text-red-600"
+                                                            ? "text-green-600"
+                                                            : strengthScore >= 3
+                                                                ? "text-yellow-600"
+                                                                : "text-red-600"
                                                             }`}
                                                     >
                                                         {strength}

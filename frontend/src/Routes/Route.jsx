@@ -13,6 +13,8 @@ import AdminProducts from "../Pages/Dashboard/AdminProducts/AdminProducts";
 import AdminCustomers from "../Pages/Dashboard/AdminCustomers/AdminCustomers";
 import AdminSettings from "../Pages/Dashboard/AdminSettings/AdminSettings";
 import Cart from "../Pages/Dashboard/Cart/Cart";
+import PrivateRoute from "./PrivateRoute";
+import AdminOrders from "../Pages/Dashboard/AdminOrders/AdminOrders";
 
 const router = createBrowserRouter([
     {
@@ -39,7 +41,7 @@ const router = createBrowserRouter([
     },
     {
         path: "/dashboard",
-        element: <Dashboard />,
+        element: <PrivateRoute><Dashboard /></PrivateRoute>,
         children: [
             {
                 path: '/dashboard/cart',
@@ -47,35 +49,36 @@ const router = createBrowserRouter([
             },
             {
                 path: '/dashboard/profile',
-                element: <UserProfile />
+                element: <PrivateRoute><UserProfile /></PrivateRoute>
             },
             {
                 path: '/dashboard/customer-dashboard',
-                element: <CustomerDashboard />
+                element: <PrivateRoute><CustomerDashboard /></PrivateRoute>
             },
             {
                 path: '/dashboard/customer-order',
-                element: <CustomerOrder />
+                element: <PrivateRoute><CustomerOrder /></PrivateRoute>
             },
+            // admin routes start here
             {
                 path: '/dashboard/admin',
-                element: <AdminDashboard />
+                element: <PrivateRoute><AdminDashboard /></PrivateRoute>
             },
             {
                 path: '/dashboard/admin-orders',
-                element: <AdminDashboard />
+                element: <PrivateRoute><AdminOrders /></PrivateRoute>
             },
             {
                 path: '/dashboard/admin-products',
-                element: <AdminProducts />
+                element: <PrivateRoute><AdminProducts /></PrivateRoute>
             },
             {
-                path: '/dashboard/admin-customers',
-                element: <AdminCustomers />
+                path: '/dashboard/manage-customers',
+                element: <PrivateRoute><AdminCustomers /></PrivateRoute>
             },
             {
                 path: '/dashboard/admin-settings',
-                element: <AdminSettings />
+                element: <PrivateRoute><AdminSettings /></PrivateRoute>
             },
         ]
     },

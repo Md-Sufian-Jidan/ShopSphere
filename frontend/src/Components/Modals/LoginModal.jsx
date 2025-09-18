@@ -8,18 +8,20 @@ import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
 import Swal from "sweetalert2";
 import { FcGoogle } from "react-icons/fc";
+import { useNavigate } from "react-router-dom";
 
 const LoginModal = ({ isOpen, onClose, onSwitchToRegister }) => {
     const { login, googleLogin } = useAuth();
     const [showPassword, setShowPassword] = useState(false);
     const axiosPublic = useAxiosPublic();
+    const navigate = useNavigate();
 
     const handleLogin = async (values, { setSubmitting, setErrors }) => {
         try {
             const email = values.email;
             const password = values.password;
             await login(email, password);
-
+            navigate('/dashboard/profile')
             console.log("Logged in:", values);
             onClose();
         } catch (error) {

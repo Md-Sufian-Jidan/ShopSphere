@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 export const axiosPublic = axios.create({
-    baseURL: 'https://shopspherebackend-sepia.vercel.app'
+    baseURL: 'https://shopsphere-backend-one.vercel.app'
     // baseURL: 'http://localhost:5000'
 })
 const useAxiosPublic = () => {

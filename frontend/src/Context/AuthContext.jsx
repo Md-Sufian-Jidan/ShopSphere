@@ -9,6 +9,7 @@ import {
     updateProfile,
 } from "firebase/auth";
 import { auth } from "../Firebase/firebase.config";
+import PropTypes from "prop-types";
 
 export const AuthContext = createContext();
 
@@ -41,8 +42,8 @@ const AuthProvider = ({ children }) => {
     };
 
     useEffect(() => {
-        const unsubscribe = onAuthStateChanged(auth, (firebaseUser) => {
-            setUser(firebaseUser || null);
+        const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+            setUser(currentUser || null);
             setLoading(false);
         });
         return () => unsubscribe();
@@ -66,4 +67,7 @@ const AuthProvider = ({ children }) => {
     );
 };
 
+AuthProvider.propTypes = {
+    children: PropTypes.node.isRequired,
+};
 export default AuthProvider;
