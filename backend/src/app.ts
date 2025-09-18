@@ -5,6 +5,7 @@ import { NotFound } from "./app/middlewares/NotFound";
 import cookieParser from 'cookie-parser';
 import rateLimit from 'express-rate-limit';
 import AppError from "./app/errorHelper/AppError";
+import { globalErrorHandler } from "./app/middlewares/GlobalErrorHandler";
 
 
 const app = express();
@@ -26,10 +27,10 @@ app.use(limiter);
 app.get("/", (req: Request, res: Response, next: NextFunction) => {
   res.send("Welcome to the show");
 });
-app.get("/about", (req: Request, res: Response, next: NextFunction) => {
-   throw new AppError(400, "Testing error")
-});
 
+
+// GLOBAL ERROR HANDLER
+app.use(globalErrorHandler);
 
 // NO ROUTE MATCHES
 app.use(NotFound);
