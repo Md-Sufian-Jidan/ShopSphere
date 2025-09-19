@@ -1,51 +1,71 @@
 import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
-
+const heroSlides = [
+    {
+        title: "Smart Deals, Everyday",
+        subtitle: "Discover trending gadgets and lifestyle picks at unbeatable prices.",
+        image:
+            "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?q=80&w=2000&auto=format&fit=crop",
+        ctaPrimary: { label: "Shop Now", href: "/products" },
+        ctaSecondary: { label: "View Deals", href: "#deals" },
+    },
+    {
+        title: "Fresh Arrivals Weekly",
+        subtitle: "Handpicked products from top brands. Limited stocks—don't miss out!",
+        image:
+            "https://images.unsplash.com/photo-1511385351671-502e3291a0b0?q=80&w=2000&auto=format&fit=crop",
+        ctaPrimary: { label: "New In", href: "#new" },
+        ctaSecondary: { label: "Best Sellers", href: "#bestsellers" },
+    },
+    {
+        title: "Upgrade Your Setup",
+        subtitle: "Build the ultimate workstation—monitors, keyboards, audio, and more.",
+        image:
+            "https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=2000&auto=format&fit=crop",
+        ctaPrimary: { label: "Build Now", href: "/products?category=workspace" },
+        ctaSecondary: { label: "Learn More", href: "/about" },
+    },
+];
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay, Pagination, Navigation } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
 const Hero = () => {
     return (
-        <section className="relative w-full h-[90vh] flex items-center justify-center overflow-x-hidden my-20">
-            {/* Background Image */}
-            <div className="absolute inset-0">
-                <img
-                    src="https://i.ibb.co/8KnxF0L/ecommerce-hero.jpg"
-                    alt="Hero Banner"
-                    className="w-full h-full object-cover"
-                />
-                {/* Overlay */}
-                <div className="absolute inset-0 bg-black/50"></div>
-            </div>
-
-            {/* Content */}
-            <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8 }}
-                className="relative z-10 text-center max-w-3xl px-4"
+        <section className="w-full mt-[65px]" aria-label="Hero">
+            <Swiper
+                modules={[Autoplay, Pagination, Navigation]}
+                autoplay={{ delay: 4000, disableOnInteraction: false }}
+                loop
+                pagination={{ clickable: true }}
+                navigation
+                className="h-[60vh] md:h-[70vh]"
             >
-                <h1 className="text-4xl md:text-6xl font-extrabold text-white leading-tight drop-shadow-lg">
-                    Discover the Best Deals on{" "}
-                    <span className="text-primary">Fashion & Electronics</span>
-                </h1>
-                <p className="mt-6 text-lg md:text-xl text-gray-200">
-                    ShopSphere brings you exclusive discounts and latest arrivals from top brands.
-                </p>
-
-                {/* CTA Buttons */}
-                <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
-                    <Link
-                        to="/shop"
-                        className="bg-primary text-white px-8 py-3 rounded-xl font-semibold shadow-lg hover:bg-accent transition transform hover:scale-105"
-                    >
-                        Shop Now
-                    </Link>
-                    <Link
-                        to="/categories"
-                        className="bg-white text-gray-800 px-8 py-3 rounded-xl font-semibold shadow-md hover:bg-gray-100 transition transform hover:scale-105"
-                    >
-                        Explore Categories
-                    </Link>
-                </div>
-            </motion.div>
+                {heroSlides.map((s, i) => (
+                    <SwiperSlide key={i}>
+                        <div
+                            className="h-full w-full bg-cover bg-center flex items-center"
+                            style={{ backgroundImage: `url(${s.image})` }}
+                        >
+                            <div className="container mx-auto px-6">
+                                <motion.div
+                                    initial={{ opacity: 0, y: 20 }}
+                                    whileInView={{ opacity: 1, y: 0 }}
+                                    transition={{ duration: 0.6 }}
+                                    className="max-w-xl bg-background/70 backdrop-blur-md p-6 rounded-lg shadow"
+                                >
+                                    <h1 className="text-3xl md:text-5xl font-bold mb-3">{s.title}</h1>
+                                    <p className="text-muted-foreground mb-6">{s.subtitle}</p>
+                                    <div className="flex gap-3">
+                                        {/* <Button asChild><Link href={s.ctaPrimary.href}>{s.ctaPrimary.label}</Link></Button> */}
+                                        {/* <Button asChild variant="secondary"><Link href={s.ctaSecondary.href}>{s.ctaSecondary.label}</Link></Button> */}
+                                    </div>
+                                </motion.div>
+                            </div>
+                        </div>
+                    </SwiperSlide>
+                ))}
+            </Swiper>
         </section>
     );
 };
