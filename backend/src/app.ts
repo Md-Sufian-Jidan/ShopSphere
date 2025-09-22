@@ -6,6 +6,7 @@ import cookieParser from "cookie-parser";
 import rateLimit from "express-rate-limit";
 import AppError from "./app/errorHelper/AppError";
 import { globalErrorHandler } from "./app/middlewares/GlobalErrorHandler";
+import { globalRoutes } from "./app/routes/routes";
 
 const app = express();
 
@@ -26,6 +27,9 @@ app.use(limiter);
 app.get("/", (req: Request, res: Response, next: NextFunction) => {
   res.send("Welcome to the show");
 });
+
+// GLOBAL ROUTES
+app.use("/api/v1", globalRoutes);
 
 // GLOBAL ERROR HANDLER
 app.use(globalErrorHandler);

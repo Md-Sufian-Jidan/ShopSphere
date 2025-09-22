@@ -8,15 +8,15 @@ export enum IsActive {
 
 export enum Role {
   ADMIN = "ADMIN",
-  UUSER = "USER",
+  USER = "USER",
 }
 
-interface IAuthProvider {
+export interface IAuthProvider {
   provider: "google" | "credentials";
   providerId: string;
 }
 
-interface IUser {
+export interface IUser {
   id?: string;
   fullname: string;
   email: string;
