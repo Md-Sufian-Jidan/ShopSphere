@@ -5,8 +5,8 @@ import env from "../../../config/env";
 
 const authProvidersSchema = new mongoose.Schema<IAuthProvider>(
   {
-    provider: {type: String, required: true},
-    providerId: {type: String, required: true}
+    provider: { type: String, required: true },
+    providerId: { type: String, required: true },
   },
   {
     _id: false,
@@ -17,7 +17,7 @@ const authProvidersSchema = new mongoose.Schema<IAuthProvider>(
 const UserSchema = new mongoose.Schema<IUser>(
   {
     fullname: { type: String, required: true },
-    email: { type: String, required: true, unique: true },
+    email: { type: String, required: true, unique: true, lowercase: true },
     password: { type: String },
     phone: { type: String },
     address: { type: String },

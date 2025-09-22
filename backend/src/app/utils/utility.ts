@@ -19,6 +19,7 @@ interface TResponse<T> {
 }
 
 class Utility {
+  // Error Catching Handler Try Catch
   CatchAsync(fn: AsyncHandler) {
     return async (req: Request, res: Response, next: NextFunction) => {
       try {
@@ -29,6 +30,7 @@ class Utility {
     };
   }
 
+  // Response Function
   SendResponse = <T>(res: Response, data: TResponse<T>) => {
     res.status(data.statusCode).json({
       statusCode: data.statusCode,
